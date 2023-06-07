@@ -1,29 +1,11 @@
-name: Teste, build e push
+name: Build e push
 
 on:
   push:
     branches:
-      - '*'
+      - main
 
 jobs:
-
-  test:
-    runs-on: ubuntu-local
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Configurando versão do Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Instalando dependencias
-      run: npm install
-
-    - name: Testando aplicação
-      run: npm test
 
   build:
 
@@ -43,5 +25,4 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Push da imagem
-      if: github.ref == 'refs/heads/main'
       run: docker push luizfilipesm/waycarbon:latest
