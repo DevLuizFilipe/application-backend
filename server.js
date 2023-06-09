@@ -3,7 +3,7 @@ const app = express();
 
 const port = 3000;
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send('O backend está funcionando');
 });
 
