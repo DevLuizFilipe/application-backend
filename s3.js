@@ -6,8 +6,8 @@ const randomBytes = promisify(crypto.randomBytes)
 
 dotenv.config()
 
-const region = AWS_REGION
-const bucketName = AWS_BUCKET_NAME
+const region = "AWS_REGION"
+const bucketName = "AWS_BUCKET_NAME"
 const accessKeyId = "AWS_ACCESS_KEY_ID"
 const secretAccessKey = "AWS_SECRET_ACCESS_KEY"
 
