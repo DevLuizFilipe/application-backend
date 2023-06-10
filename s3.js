@@ -8,8 +8,8 @@ dotenv.config()
 
 const region = AWS_REGION
 const bucketName = AWS_BUCKET_NAME
-const accessKeyId = AWS_ACCESS_KEY_ID
-const secretAccessKey = AWS_SECRET_ACCESS_KEY
+const accessKeyId = "AWS_ACCESS_KEY_ID"
+const secretAccessKey = "AWS_SECRET_ACCESS_KEY"
 
 const s3 = new aws.S3({
   region,
