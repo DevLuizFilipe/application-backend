@@ -6,23 +6,27 @@ on:
       - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-local
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Build e tag da imagem
-      run: docker build -t luizfilipesm/waycarbon:latest .
+      - name: Substituir variáveis no código de backend
+        run: |
+          sed -i "s/\${{ secrets.AWS_ACCESS_KEY_ID }}/$AWS_ACCESS_KEY_ID/g" s3.js
+          sed -i "s/\${{ secrets.AWS_SECRET_ACCESS_KEY }}/$AWS_SECRET_ACCESS_KEY/g" s3.js
+          sed -i "s/\${{ AWS_REGION }}/$AWS_REGION/g" s3.js
+          sed -i "s/\${{ AWS_BUCKET_NAME }}/$AWS_BUCKET_NAME/g" s3.js
 
-    - name: Login no Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build e tag da imagem
+        run: docker build -t luizfilipesm/waycarbon:latest .
 
-    - name: Push da imagem
-      run: docker push luizfilipesm/waycarbon:latest
+      - name: Login no Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push da imagem
+        run: docker push luizfilipesm/waycarbon:latest
