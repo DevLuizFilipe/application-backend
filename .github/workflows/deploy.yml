@@ -14,10 +14,10 @@ jobs:
 
       - name: Substituir variáveis no código de backend
         run: |
-          sed -i "s/\${{ secrets.AWS_ACCESS_KEY_ID }}/AWS_ACCESS_KEY_ID/g" s3.js
-          sed -i "s/\${{ secrets.AWS_SECRET_ACCESS_KEY }}/AWS_SECRET_ACCESS_KEY/g" s3.js
-          sed -i "s/\${{ secrets.AWS_REGION }}/AWS_REGION/g" s3.js
-          sed -i "s/\${{ secrets.AWS_BUCKET_NAME }}/AWS_BUCKET_NAME/g" s3.js
+          sed -i "s/\AWS_ACCESS_KEY_ID/${{ secrets.AWS_ACCESS_KEY_ID }}/g" s3.js
+          sed -i "s/\AWS_SECRET_ACCESS_KEY/${{ secrets.AWS_SECRET_ACCESS_KEY }}/g" s3.js
+          sed -i "s/\AWS_REGION/${{ secrets.AWS_REGION }}/g" s3.js
+          sed -i "s/\AWS_BUCKET_NAME/${{ secrets.AWS_BUCKET_NAME }}/g" s3.js
 
       - name: Build e tag da imagem
         run: docker build -t luizfilipesm/waycarbon:latest .
