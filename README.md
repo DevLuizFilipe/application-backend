@@ -1,1 +1,1 @@
-Backend que retorna uma mensagem ao front
+Backend que envia imagens ao S3
