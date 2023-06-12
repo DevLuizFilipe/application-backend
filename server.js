@@ -10,7 +10,7 @@ app.use(cors({
   origin: 'FRONTEND_URL'
 }));
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Olá, mundo!');
 });
 
