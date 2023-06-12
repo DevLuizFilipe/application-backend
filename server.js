@@ -1,15 +1,19 @@
 import express from 'express'
-import { generateUploadURL } from './s3.js'
+import cors from 'cors'
 
-const app = express()
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const port = 80;
+
+app.use(cors({
+  origin: 'FRONTEND_URL'
+}));
 
 app.get('/', (req, res) => {
-  res.send('OK')
-})
+  res.send('Olá, mundo!');
+});
 
-app.get('/api', async (req, res) => {
-  const url = await generateUploadURL()
-  res.send({ url })
-})
-
-app.listen(80, () => console.log("Ouvindo na porta 80"))
+app.listen(port, () => {
+  console.log("Servidor rodando em http://localhost:${port}");
+});
