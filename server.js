@@ -8,7 +8,7 @@ app.use(cors({
 }));
 
 app.get('/api', (req, res) => {
-  res.send('Olá, mundo!');
+  res.send('O Backend está rodando no ECS!');
 });
 
 app.listen(port, () => {
